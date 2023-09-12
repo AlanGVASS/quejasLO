@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Registro de quejas - Coppel
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+	<style>
+      @font-face {
+			font-family: 'Circular Std';
+			font-style: normal;
+			font-weight: 450;
+			src: local('Circular Std'), url('fonts/CircularStd-Book.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: italic;
+			font-weight: 450;
+			src: local('Circular Std'), url('fonts/CircularStd-BookItalic.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: normal;
+			font-weight: 500;
+			src: local('Circular Std'), url('fonts/CircularStd-Medium.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: italic;
+			font-weight: 500;
+			src: local('Circular Std'), url('fonts/CircularStd-MediumItalic.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: normal;
+			font-weight: 700;
+			src: local('Circular Std'), url('fonts/CircularStd-Bold.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: italic;
+			font-weight: 700;
+			src: local('Circular Std'), url('fonts/CircularStd-BoldItalic.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: normal;
+			font-weight: 900;
+			src: local('Circular Std'), url('fonts/CircularStd-Black.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: italic;
+			font-weight: 900;
+			src: local('Circular Std'), url('fonts/CircularStd-BlackItalic.woff') format('woff');
+		}
+    </style>
+
+    <link rel="shortcut icon" href="https://www.coppel.com/wcsstore/CoppelStoreFrontAssetStore/images/icon-favicon.ico" mce_href="https://www.coppel.com/wcsstore/CoppelStoreFrontAssetStore/images/icon-favicon.ico">
+
+    <style type="text/css"> 
+      html,body{width:100%;height:100%; background-color: #f5f5f5;font-family:'Circular Std' !important;}
+	  .spinner-wrapper {width: 100px;height: 100px;position: relative;margin: 100px auto;}
+	  .spinner-text {position:absolute;top: 60px;}
+	  .spinner {width: 60px;height: 60px;position: relative;}
+	  .double-bounce1, .double-bounce2 {width: 100%;height: 100%;border-radius: 50%;background-color: #2066b0;opacity: 0.6;position: absolute;top: 0;left: 0;-webkit-animation: sk-bounce 2.0s infinite ease-in-out;animation: sk-bounce 2.0s infinite ease-in-out;}
+	  .double-bounce2 {-webkit-animation-delay: -1.0s;animation-delay: -1.0s;}
+	  @-webkit-keyframes sk-bounce {0%, 100% { -webkit-transform: scale(0.0) } 50% { -webkit-transform: scale(1.0) }}
+	  @keyframes sk-bounce {0%, 100% {transform: scale(0.0);-webkit-transform: scale(0.0);} 50% {transform: scale(1.0);-webkit-transform: scale(1.0);}}
+	  
+	  @media only screen and (max-width: 359px) {
+		.tituloHeaderCoppel {
+			display: none;
+		}
+	  }
+    </style>
+  </head>
+  <body>
+
+    <nav role="navigation" class="navbar navbar-light" style="background-color: #FFE86F;">
+      <a href="/quejas" class="navbar-brand">
+        <img src="https://www.coppel.com/images/emarketing/logo_80aniv2.png" style="width: 80px; background-color: yellow;">&nbsp;&nbsp;<span class="tituloHeaderCoppel">Registro de quejas - Coppel</span>
+       </a>
+    </nav> 
+
+<div class="container">
+  <div class="row">
+    <dir class="col">
+      <div id="lexcontainer" class="cCasePublic">
+		<div class="spinner-wrapper">
+			<div class="spinner">
+			  <div class="double-bounce1"></div>
+			  <div class="double-bounce2"></div>
+			  <!--<div class="spinner-text">Cargando información...</div> -->
+			</div>
+		</div>
+	</div>
+    </dir>
+  </div>
+</div>
+  
+         
+  </body>
+  <script src="https://qa-coppel.cs220.force.com/quejaspublic/lightning/lightning.out.js"></script>
+  <!--<script type="text/javascript" src="lib/jquery.js">  </script>
+  <script type="text/javascript" src="lib/jqueryCookies.js"> </script> -->
+	<!-- dev0-coppel.cs194.force.com -->
+	<!-- vassdevmx2-coppel.cs214.force.com -->
+	<!-- qa-coppel.cs220.force.com -->
+  <script> 
+    var _lightningReady = false;
+    createChatterFeed();
+
+    function setupLightning(callback) {
+      var appName = "c:CasePublic";
+      
+      if (_lightningReady) {
+        if (typeof callback === "function") {
+          callback();
+        }
+      } else {
+        //var url = "https://qa-coppel.cs220.force.com/quejaspublic";
+		var url = "https://coppelmx--vassdevmx2.sandbox.my.salesforce-sites.com/quejaspublic";
+
+        $Lightning.use(
+          appName, 
+          function() {
+            _lightningReady = true;
+			document.getElementById("lexcontainer").innerHTML = "";
+            document.getElementById("lexcontainer").style.display = "";
+            if (typeof callback === "function") {
+              callback();
+            }
+          },
+          url
+        );
+      }
+    }
+
+    function createChatterFeed() {
+      setupLightning(function() {
+        $Lightning.createComponent("c:casePublicCmp", {origin: '1a07afe7fc2c54d466d12569f05fb391'}, "lexcontainer");
+      });
+    }
+  </script>
+</html> 
