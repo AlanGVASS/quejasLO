@@ -1,475 +1,150 @@
-<template>
-    <div class="casepublic-wrapper">
-        <div style=" display: table-cell;  width: 330px"> </div>
-        <div style=" display: table-cell;  "> 
-            <template if:true={showInitialFields}>
-                    <lightning-card class="card1">
-                    <div style="text-align: center;">
-                        <h1 style="font-size: 25px"><b>¡Queremos escucharte para brindarte una mejor experiencia!</b></h1>
-                    </div>    
-                    <div class="slds-var-p-horizontal_medium subtituloCard" style="margin-top: 25px;">
-                        <label><i>Tú decides cómo</i></label>
-                    </div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Registro de quejas - Coppel
+    </title>
 
-                    <div class="slds-var-p-horizontal_medium">
-                        <div class="slds-col slds-size_1-of-1">
-                            <label class="slds-form-element__label slds-no-flex fechaNacimientoLabel">1. En nuestros canales, donde un asesor podrá ayudarte:</label>
-                        </div>
-                        <!-- <template if:true={showInitialFields}>
-                            <lightning-card> -->
-                                <div class="slds-col slds-size_1-of-1" >
-                                    <!-- <label class="slds-form-element__label slds-no-flex fechaNacimientoLabel">Si tienes dudas o quieres hacer una aclaración, contáctanos en estos canales:</label> -->
-                                    <!-- <p>
-                                        <img src={fb} alt="Facebook" style=" 
-                                        margin-right: 3px;
-                                        width: 14px;
-                                        height: 14px;">
-                                        Facebook</p>
-                                    <p>
-                                        <img src={wa} alt="WhatsApp" style=" 
-                                        margin-right: 3px;
-                                        width: 14px;
-                                        height: 14px;">
-                                        WhatsApp</p> -->
-                                    <!-- <div class="slds-col slds-size_1-of-3" style="display: inline-block; border: 2px solid red; "> -->
-                                    <div style=" width: 120px; height: 50px; display: inline-block; background-color: #f8f8f8 ; border-radius: 5px;">
-                                        <p style="margin-top: 5px;">
-                                            <img src={wa} alt="WhatsApp" style=" 
-                                            margin-right: 3px;
-                                            margin-left: 3px;
-                                            width: 15px;
-                                            height: 15px;"> 800-220-7735</p>
-                                        <p style="margin-left: 21px;"><a href="https://cppl.io/6nK9pl">WhatsApp</a></p>
-                                    </div> 
-                                    <div style=" width: 10px; height: 50px; display: inline-block;"></div> 
-                                    <div style=" width: 140px; height: 50px; display: inline-block; background-color: #f8f8f8 ; border-radius: 5px;">
-                                        <!-- <p><lightning-icon icon-name="utility:call" alternative-text="Call" title="Call" size="xx-small">
-                                        </lightning-icon> 800 12267735</p> -->
-                                        <p style="margin-top: 5px;">
-                                            <img src={tel} alt="Teléfono" style=" 
-                                            margin-right: 3px;
-                                            margin-left: 3px;
-                                            width: 15px;
-                                            height: 15px;">800-220-7735</p>
-                                        <p style="margin-left: 21px; color: rgb(40, 106, 228)">Atención a clientes</p>
-                                    </div>                                    
-                                    <!-- <div class="slds-col slds-size_1-of-3" style="display: inline-block;">
-                                        <p><lightning-icon icon-name="utility:email" alternative-text="Email" title="Email" size="xx-small">
-                                        </lightning-icon> atención@coppel.com</p>
-                                    </div> -->
-                                    <div style=" width: 10px; height: 50px; display: inline-block;"></div>
-                                    <div style="width: 120px; height: 50px; display: inline-block; background-color: #f8f8f8; border-radius: 5px; ">
-                                        <p style="margin-top: 5px;">
-                                            <img src={fb} alt="Facebook" style=" 
-                                            margin-right: 3px;
-                                            margin-left: 3px;
-                                            width: 13px;
-                                            height: 13px;">@tiendascoppel</p>
-                                        <p style="margin-left: 19px;"> <a href="https://www.facebook.com/tiendascoppel">Facebook</a></p>
-                                    </div>  
-                                </div>
-                            <!-- </lightning-card>
-                        </template> -->
-                    </div>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-                    <div class="slds-var-p-horizontal_medium">
-                        <div class="slds-col slds-size_1-of-1"><label class="slds-form-element__label slds-no-flex fechaNacimientoLabel">2. Llenando el formulario a continuación:</label></div>
-                        <div class="slds-var-p-horizontal_medium subtituloCard" style="margin-top: 10px;">
-                            <label><i><b>Los campos con * son obligatorios</b></i></label>
-                                <p>La información que nos proporciones nos permitirá ofrecerte la mejor solución posible; por ello, es importanteque describas a detalle tu situación*</p>
-                                <lightning-textarea name="descriptionQueryFld"
-                                                    variant="label-hidden"
-                                                    type="textarea"
-                                                    max-length="400"
-                                                    required message-when-value-missing="*Campo obligatorio"
-                                                    onchange={handleDescriptionChanged}
-                                                    style="--slds-c-textarea-color-border: #0176d3; "></lightning-textarea>
-                            <div class="slds-col slds-size_1-of-1" style="text-align: right;" ><label class="slds-form-element__label slds-no-flex "> {size}/400 </label></div>
-                        </div>
-                        <div class="slds-col slds-size_1-of-1">
-                            <label class="slds-form-element__label slds-no-flex fechaNacimientoLabel">Datos personales</label>
-                        </div>
-                        <lightning-input name="firstNameFld"      
-                                        label="Nombre(s)*"
-                                        max-length="255" onchange={handleFirstNameChanged} required message-when-value-missing="*Campo obligatorio"
-                                        ></lightning-input>
-                        <div class="slds-col slds-size_1-of-2" style="display: inline-block;">
-                            <lightning-input name="firstLastNameFld"
-                                             label="Primer apellido*"
-                                             style="padding-right: 5px;"
-                                             max-length="255" onchange={handleFirstLastNameChanged} required message-when-value-missing="*Campo obligatorio"></lightning-input>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2" style="display: inline-block;">
-                            <lightning-input name="secondLastNameFld"                 
-                                             label="Segundo apellido (opcional)"                                         
-                                             max-length="255" onchange={handleSecondLastNameChanged}
-                                             style="padding-left: 5px;"></lightning-input>
-                        </div>
-                        <div class="slds-col slds-size_1-of-1" style="margin-top: 30px;"><label class="slds-form-element__label slds-no-flex fechaNacimientoLabel">¿Tienes Crédito Coppel? (opcional)</label></div>
-                        <lightning-radio-group
-                            class="customRadioCss"
-                            label="Opciones numero de cliente"  
-                            variant="label-hidden" 
-                            options={radioValues2}
-                            value={value2}
-                            onchange={handleChangeRadio2}
-                            style="margin-top: 10px;"></lightning-radio-group>    
-                        <div if:true={SiTengo}>
+    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-                            <div class="slds-col slds-size_1-of-1" style="margin-top: 20px;">
-                                <label class="slds-form-element__label slds-no-flex fechaNacimientoLabel">
-                                    <b>Identificarme con:</b>
-                                </label>
-                            </div>
-                            <!-- <lightning-radio-group 
-                                class="customRadioCss"
-                                label="Identificacion"  
-                                variant="label-hidden" 
-                                options={radioValues3}
-                                value={value3}
-                                required message-when-value-missing="*Campo obligatorio"
-                                onchange={handleChangeRadio3}></lightning-radio-group>  -->
+	<style>
+      @font-face {
+			font-family: 'Circular Std';
+			font-style: normal;
+			font-weight: 450;
+			src: local('Circular Std'), url('fonts/CircularStd-Book.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: italic;
+			font-weight: 450;
+			src: local('Circular Std'), url('fonts/CircularStd-BookItalic.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: normal;
+			font-weight: 500;
+			src: local('Circular Std'), url('fonts/CircularStd-Medium.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: italic;
+			font-weight: 500;
+			src: local('Circular Std'), url('fonts/CircularStd-MediumItalic.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: normal;
+			font-weight: 700;
+			src: local('Circular Std'), url('fonts/CircularStd-Bold.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: italic;
+			font-weight: 700;
+			src: local('Circular Std'), url('fonts/CircularStd-BoldItalic.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: normal;
+			font-weight: 900;
+			src: local('Circular Std'), url('fonts/CircularStd-Black.woff') format('woff');
+		}
+		@font-face {
+			font-family: 'Circular Std';
+			font-style: italic;
+			font-weight: 900;
+			src: local('Circular Std'), url('fonts/CircularStd-BlackItalic.woff') format('woff');
+		}
+    </style>
 
-                            <div class="slds-grid slds-gutters">
-                                <div class="slds-col slds-size_1-of-2" style="display: inline-block; padding-left: 30px">
-                                    <lightning-button label="Número de cliente"  onclick={handleClickNumCliente}
-                                    style="
-                                    --slds-c-button-neutral-color-background: rgb(211, 222, 230);
-                                    --slds-c-button-neutral-color-background-hover: rgb(190, 198, 203);
-                                    --slds-c-button-neutral-color-border: rgb(211, 222, 230);
-                                    --slds-c-button-neutral-color-border-hover: rgb(211, 222, 230);
-                                    --slds-c-button-neutral-color-backgroud-active: rgb(190, 198, 203);
-                                    --slds-c-button-neutral-color-border-active: rgb(0, 111, 185);
-                                    --slds-c-button-text-color: black;
-                                    --slds-c-button-text-color-hover: rgb(0, 111, 185);
-                                    --slds-c-button-text-color-active: rgb(0, 111, 185);
-                                    display: grid; ">   
-                                    </lightning-button>
-                                </div>
-                                <!-- <p> <b>o</b></p> -->
-                                <div class="slds-col slds-size_1-of-2" style="display: inline-block;">
-                                    <lightning-button label="Fecha de nacimiento" variant="brand" onclick={handleClickFecha}
-                                    style="
-                                    --slds-c-button-neutral-color-background: rgb(211, 222, 230);
-                                    --slds-c-button-neutral-color-background-hover: rgb(190, 198, 203);
-                                    --slds-c-button-neutral-color-border: rgb(211, 222, 230);
-                                    --slds-c-button-neutral-color-border-hover: rgb(211, 222, 230);
-                                    --slds-c-button-neutral-color-backgroud-active: rgb(190, 198, 203);
-                                    --slds-c-button-neutral-color-border-active: rgb(0, 111, 185);
-                                    --slds-c-button-text-color: black;
-                                    --slds-c-button-text-color-hover: rgb(0, 111, 185);
-                                    --slds-c-button-text-color-active: rgb(0, 111, 185);
-                                    display: grid; ">
-                                    </lightning-button>
-                                </div>
-                            </div>    
-                            <div class="slds-grid slds-gutters" if:true={numCliente}> 
-                                <div class="slds-col slds-size_1-of-1">
-                                    <div class="slds-grid slds-wrap">
-                                        <div>                                                         
-                                            <lightning-input name="clientNumberFld"
-                                                label="Número de cliente"
-                                                value={valueNC} style="margin-top: 15px;"
-                                                required message-when-value-missing="*Campo obligatorio"
-                                                max-length="25" onchange={handleClientNumber} onkeydown={handleOnlyNumbers} title="Encuéntralo en tu tarjeta Coppel, estado de cuenta y recibo de abonos."></lightning-input>
-                                            <div class="slds-col slds-size_1-of-1" style="margin-top: 0px;"><label class="slds-form-element__label slds-no-flex ">Lo encuentras en tu tarjeta o en tu Estado de Cuenta</label></div>        
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <lightning-checkbox-group label="Opciones numero de cliente"  
-                            if:true={FechaValida}
-                            variant="label-hidden" 
-                            options={radioValues3}
-                            value={value3}
-                            onchange={handleChangeRadio3}
-                            style="--slds-c-checkbox-radius-border: 100%;
-                            --slds-c-checkbox-color-background-checked: white;
-                            --slds-c-checkbox-radio-mark-color-foreground: #0176d3;
-                            margin-top: 15px; ">
-                        </lightning-checkbox-group> -->
-                        <div class="slds-grid slds-gutters" if:true={fechaNacimiento}>  
-                            <div class="slds-col slds-size_1-of-1">
-                                <div class="slds-grid slds-wrap">
-                                    <div>
-                                        <lightning-input type="date" 
-                                                name="fechaDeNacimiento" 
-                                                date-style="long" 
-                                                label="Fecha de nacimiento"  
-                                                placeholder="DD/MM/AAAA"
-                                                style="margin-top: 15px;"
-                                                required message-when-value-missing="*Campo obligatorio"
-                                                onchange={handleFechaDeNacimiento}>
-                                        </lightning-input>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slds-col slds-size_1-of-1" style="margin-top: 20px;">
-                            <label class="slds-form-element__label slds-no-flex fechaNacimientoLabel">
-                                Elige en dónde quieres que te contactemos*                
-                            </label>
-                        </div>
-                        <!-- <lightning-radio-group 
-                            class="customRadioCss"
-                            label="Medio de contacto"  
-                            variant="label-hidden" 
-                            options={radioValues}
-                            value={value}
-                            required message-when-value-missing="*Campo obligatorio"
-                            onchange={handleChangeRadio}></lightning-radio-group>                     -->
+    <link rel="shortcut icon" href="https://www.coppel.com/wcsstore/CoppelStoreFrontAssetStore/images/icon-favicon.ico" mce_href="https://www.coppel.com/wcsstore/CoppelStoreFrontAssetStore/images/icon-favicon.ico">
 
-                        <div class="slds-grid slds-gutters">
-                            <div class="slds-col slds-size_1-of-2" style="display: inline-block; padding-left: 100px">
-                                <lightning-button label="Teléfono" variant="brand" onclick={handleClickTel}
-                                style="
-                                --slds-c-button-neutral-color-background: rgb(211, 222, 230);
-                                --slds-c-button-neutral-color-background-hover: rgb(190, 198, 203);
-                                --slds-c-button-neutral-color-border: rgb(211, 222, 230);
-                                --slds-c-button-neutral-color-border-hover: rgb(211, 222, 230);
-                                --slds-c-button-neutral-color-backgroud-active: rgb(190, 198, 203);
-                                --slds-c-button-neutral-color-border-active: rgb(0, 111, 185);
-                                --slds-c-button-text-color: black;
-                                --slds-c-button-text-color-hover: rgb(0, 111, 185);
-                                --slds-c-button-text-color-active: rgb(0, 111, 185);
-                                display: grid; ">
-                                </lightning-button>
-                            </div>
-                            <!-- <p> <b>o</b></p> -->
-                            <div class="slds-col slds-size_1-of-2" style="display: inline-block;">
-                                <lightning-button label="Correo Electrónico" variant="brand" onclick={handleClickCorreo}
-                                style="
-                                --slds-c-button-neutral-color-background: rgb(211, 222, 230);
-                                --slds-c-button-neutral-color-background-hover: rgb(190, 198, 203);
-                                --slds-c-button-neutral-color-border: rgb(211, 222, 230);
-                                --slds-c-button-neutral-color-border-hover: rgb(211, 222, 230);
-                                --slds-c-button-neutral-color-backgroud-active: rgb(190, 198, 203);
-                                --slds-c-button-neutral-color-border-active: rgb(0, 111, 185);
-                                --slds-c-button-text-color: black;
-                                --slds-c-button-text-color-hover: rgb(0, 111, 185);
-                                --slds-c-button-text-color-active: rgb(0, 111, 185);
-                                display: grid; ">  
-                                </lightning-button>
-                            </div>
-                        </div>    
-                        <!-- Cambio Alan (if true) -->
-                        <div class="slds-grid slds-gutters" if:true={phoneAvailable} >
-                            <div class="slds-col slds-size_1-of-1">
-                                <!-- Cambio Alan -->
-                                <lightning-input name="phoneFld"
-                                                type="tel"
-                                                label="Teléfono (10 dígitos)*" 
-                                                onchange={handlePhoneChanged}
-                                                onkeydown={handleOnlyNumbers} style="margin-top: 15px;"
-                                                min-length="10" max-length="10"                                            
-                                                required message-when-value-missing="*Campo obligatorio"
-                                                message-when-too-short="El número de teléfono debe ser de 10 dígitos"
-                                                message-when-too-long="El número de teléfono debe ser de 10 dígitos"></lightning-input> 
-                                                <!-- required
-                                                message-when-value-missing="*Campo obligatorio" -->
-                            </div>
-                        </div>
-                        <!-- Cambio Alan (if true) -->
-                        <lightning-input name="emailFld"
-                                        type="email"
-                                        label="Correo electrónico*"
-                                        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                        max-length="100" onchange={handleEMailChanged} style="margin-top: 15px;"
-                                        message-when-type-mismatch="Algún dato es incorrecto. Revisa y prueba de nuevo."
-                                        message-when-pattern-mismatch="Algún dato es incorrecto. Revisa y prueba de nuevo."
-                                        required message-when-value-missing="*Campo obligatorio"
-                                        if:true={mailAvailable}></lightning-input>
-                    </div>              
-                    <div class="divEnviarDatosContactoActions">
-                        <lightning-button id="btnEnviarDatosContacto" label="Enviar registro" title="Enviar" 
-                        slot="actions" class="slds-button btnEnviarDatosContacto" 
-                        onclick={saveMinimalData} disabled={available}
-                        style="padding-top: 10px;">
-                        </lightning-button>
-                    </div>
-                </lightning-card>
-                <br/>
-                <!-- Cambio Alan ( onclick showDesitionBlock  por  saveMinimalData) -->
-                <!-- <div class="divEnviarDatosContactoActions"><lightning-button id="btnEnviarDatosContacto" label="Enviar registro" title="Enviar" slot="actions" class="slds-button btnEnviarDatosContacto" onclick={saveMinimalData} disabled={available}></lightning-button></div> -->
-            </template>
+    <style type="text/css"> 
+      html,body{width:100%;height:100%; background-color: #f5f5f5;font-family:'Circular Std' !important;}
+	  .spinner-wrapper {width: 100px;height: 100px;position: relative;margin: 100px auto;}
+	  .spinner-text {position:absolute;top: 60px;}
+	  .spinner {width: 60px;height: 60px;position: relative;}
+	  .double-bounce1, .double-bounce2 {width: 100%;height: 100%;border-radius: 50%;background-color: #2066b0;opacity: 0.6;position: absolute;top: 0;left: 0;-webkit-animation: sk-bounce 2.0s infinite ease-in-out;animation: sk-bounce 2.0s infinite ease-in-out;}
+	  .double-bounce2 {-webkit-animation-delay: -1.0s;animation-delay: -1.0s;}
+	  @-webkit-keyframes sk-bounce {0%, 100% { -webkit-transform: scale(0.0) } 50% { -webkit-transform: scale(1.0) }}
+	  @keyframes sk-bounce {0%, 100% {transform: scale(0.0);-webkit-transform: scale(0.0);} 50% {transform: scale(1.0);-webkit-transform: scale(1.0);}}
+	  
+	  @media only screen and (max-width: 359px) {
+		.tituloHeaderCoppel {
+			display: none;
+		}
+	  }
+    </style>
+  </head>
+  <body>
 
-            <!-- Cambio Alan (Agregado) -->
-            <template if:true={showSpinner}>
-                <div id="activityIndicator" class="slds-spinner_container">
-                    <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
-                        <span class="slds-assistive-text">Loading, Please Wait...</span>
-                        <div class="slds-spinner__dot-a"></div>
-                        <div class="slds-spinner__dot-b"></div>
-                    </div>
-                </div>
-            </template>
+    <nav role="navigation" class="navbar navbar-light" style="background-color: #FFE86F;">
+      <a href="/quejas" class="navbar-brand">
+        <img src="https://www.coppel.com/images/emarketing/logo_80aniv2.png" style="width: 80px; background-color: yellow;">&nbsp;&nbsp;<span class="tituloHeaderCoppel">Registro de quejas - Coppel</span>
+       </a>
+    </nav> 
 
-            <template if:true={showMinimalRegisterResults}>
-                <div style="height: 400px;
-                width: 448px;" >
-                    <lightning-card style="--sds-c-card-color-background: #0176d3;">
+<div class="container">
+  <div class="row">
+    <dir class="col">
+      <div id="lexcontainer" class="cCasePublic">
+		<div class="spinner-wrapper">
+			<div class="spinner">
+			  <div class="double-bounce1"></div>
+			  <div class="double-bounce2"></div>
+			  <!--<div class="spinner-text">Cargando información...</div> -->
+			</div>
+		</div>
+	</div>
+    </dir>
+  </div>
+</div>
+  
+         
+  </body>
+  <script src="https://qa-coppel.cs220.force.com/quejaspublic/lightning/lightning.out.js"></script>
+  <!--<script type="text/javascript" src="lib/jquery.js">  </script>
+  <script type="text/javascript" src="lib/jqueryCookies.js"> </script> -->
+	<!-- dev0-coppel.cs194.force.com -->
+	<!-- vassdevmx2-coppel.cs214.force.com -->
+	<!-- qa-coppel.cs220.force.com -->
+  <script> 
+    var _lightningReady = false;
+    createChatterFeed();
 
-                        <div style="align-content: center;">
-                            <!-- <div class="slds-var-p-horizontal_medium" style="text-align: center;"> -->
-                                <!-- <div style="background-color: #0176d3;"> -->
-                                    <div class="slds-var-p-horizontal_medium" style="text-align: center;">
-                                        <img src={succesIcon} alt="Datos registrados" style="  display: block;
-                                        margin-left: 180px;
-                                        margin-right: 180px;
-                                        width: 50px;
-                                        height: 50px;">
-                                        <br/>
-                                        <p style="font-size: 25px; margin-top: 15px; margin-bottom: 15px; color: white;">
-                                            <b>Gracias por registrar tu aclaración</b>
-                                        </p>
-                                    </div>
-                        </div>
-                    </lightning-card>
-                    <lightning-card>
-                        <div style="align-content: center;">
-                            <!-- </div> -->
-                            <!-- <lightning-card >
-                                <div style="align-content: center;"> -->
-                            <div class="slds-var-p-horizontal_medium" style="text-align: center;">
-                                <br/> 
-                                <div><p style="font-size: 15px;; ">Te sugerimos estar al pendiente, ya que nos comunicaremos contigo al medio de contacto que elegiste.</p>
-                                    <p style="font-size: 15px;"> ¿Quieres darle seguimiento a tu aclaración o resolver dudas sobre esta?</p>
-                                    <p style="font-size: 15px; margin-bottom: 30px;"><b>Comunícate a nuestros canales de atención.</b></p>
-                                </div>
-                            </div>
+    function setupLightning(callback) {
+      var appName = "c:CasePublic";
+      
+      if (_lightningReady) {
+        if (typeof callback === "function") {
+          callback();
+        }
+      } else {
+        var url = "https://qa-coppel.cs220.force.com/quejaspublic";
 
-                        <div class="slds-var-p-horizontal_medium">
+        $Lightning.use(
+          appName, 
+          function() {
+            _lightningReady = true;
+			document.getElementById("lexcontainer").innerHTML = "";
+            document.getElementById("lexcontainer").style.display = "";
+            if (typeof callback === "function") {
+              callback();
+            }
+          },
+          url
+        );
+      }
+    }
 
-                            <div style=" width: 120px; height: 50px; display: inline-block; background-color: #f8f8f8 ; border-radius: 5px;">
-                                <p style="margin-top: 5px;">
-                                    <img src={wa} alt="WhatsApp" style=" 
-                                    margin-right: 3px;
-                                    margin-left: 3px;
-                                    width: 15px;
-                                    height: 15px;"> 800-220-7735</p>
-                                <p style="margin-left: 21px;"><a href="https://cppl.io/6nK9pl">WhatsApp</a></p>
-                            </div> 
-                            <div style=" width: 10px; height: 50px; display: inline-block;"></div> 
-                            <div style=" width: 140px; height: 50px; display: inline-block; background-color: #f8f8f8 ; border-radius: 5px;">
-                              
-                                <p style="margin-top: 5px;">
-                                    <img src={tel} alt="Teléfono" style=" 
-                                    margin-right: 3px;
-                                    margin-left: 3px;
-                                    width: 15px;
-                                    height: 15px;">800-220-7735</p>
-                                <p style="margin-left: 21px; color: rgb(40, 106, 228)">Atención a clientes</p>
-                            </div>              
-                            <div style=" width: 10px; height: 50px; display: inline-block;"></div>
-                            <div style="width: 120px; height: 50px; display: inline-block; background-color: #f8f8f8; border-radius: 5px; ">
-                                <p style="margin-top: 5px;">
-                                    <img src={fb} alt="Facebook" style=" 
-                                    margin-right: 3px;
-                                    margin-left: 3px;
-                                    width: 13px;
-                                    height: 13px;">@tiendascoppel</p>
-                                <p style="margin-left: 19px;"> <a href="https://www.facebook.com/tiendascoppel">Facebook</a></p>
-                            </div>
-
-                            <!-- <div class="slds-col slds-size_1-of-3" style="display: inline-block;">
-                                <p>
-                                    <img src={wa} alt="WhatsApp" style=" 
-                                    margin-right: 3px;
-                                    margin-left: 3px;
-                                    width: 15px;
-                                    height: 15px;">800-220-7735</p>
-                                <p style="margin-left: 21px;">WhatsApp</p>
-                            </div>  
-                            <div class="slds-col slds-size_1-of-3" style="display: inline-block;">
-                                <p>
-                                    <img src={tel} alt="Teléfono" style=" 
-                                    margin-right: 3px;
-                                    margin-left: 3px;
-                                    width: 15px;
-                                    height: 15px;">800-220-7735</p>
-                                <p style="margin-left: 21px;">Atención a clientes</p>
-                            </div>                                    
-                            <div class="slds-col slds-size_1-of-3" style="display: inline-block;">
-                                <p>
-                                    <img src={fb} alt="Facebook" style=" 
-                                    margin-right: 3px;
-                                    margin-left: 3px;
-                                    width: 15px;
-                                    height: 15px;">@tiendascoppel</p>
-                                <p style="margin-left: 21px;">Facebook</p>
-                            </div>   -->
-                        </div>
-
-
-
-
-                    </div>
-                    </lightning-card>
-                </div>
-                <!-- <div style="height: 150px;
-                width: 448px;
-                margin: auto;" >
-                    <lightning-card >
-                        <div style="text-align: center;">
-                            <p>Si quieres que atendamos tu solicitud con ayuda de un asesor, </p><p> te sugerimos comunicarte a cualquiera de nuestros canales:</p>
-                            <p><img src={fb} alt="Facebook" style=" 
-                                margin-right: 3px;
-                                width: 14px;
-                                height: 14px;">Facebook</p>
-                            <p><img src={wa} alt="WhatsApp" style=" 
-                                margin-right: 3px;
-                                width: 14px;
-                                height: 14px;">WhatsApp</p>
-                            <p><lightning-icon icon-name="utility:call" alternative-text="Call" title="Call" size="xx-small">
-                            </lightning-icon> 800 12267735</p>
-                            <p><lightning-icon icon-name="utility:email" alternative-text="Email" title="Email" size="xx-small">
-                            </lightning-icon> atención@coppel.com</p>
-                        </div>
-                    </lightning-card>
-                </div> -->
-                <!-- <div style="margin: auto;
-                padding: 50px;"
-                > -->
-                <!-- <div style="height: 50px;
-                width: 150px;
-                margin: auto;" > -->
-                <!-- <div style="  height: 60px;
-                width: 360px;
-                margin: auto;
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;">
-                    <lightning-button
-                    onclick={visitarCoppel}
-                    label="Ir a Coppel.com"
-                    title="Coppel.com"
-                    style="
-                    --slds-c-button-neutral-color-background: rgb(0, 111, 185);
-                    --slds-c-button-neutral-color-background-hover: rgb(0, 111, 185);
-                    --slds-c-button-neutral-color-border: rgb(0, 111, 185);
-                    --slds-c-button-neutral-color-border-hover: rgb(0, 111, 185);
-                    --slds-c-button-neutral-color-background-active: rgb(0, 111, 185);
-                    --slds-c-button-neutral-color-background-hover-active: rgb(0, 111, 185);
-                    --slds-c-button-neutral-color-border-active: rgb(0, 111, 185);
-                    --slds-c-button-neutral-color-border-hover-active: rgb(0, 111, 185);
-                    --slds-c-button-text-color: white;
-                    --slds-c-button-text-color-hover: white;
-                    --slds-c-button-text-color-active: white;
-                    --slds-c-button-text-color-hover-active: white;
-                    --slds-c-button-line-height: 20px;
-                    --slds-c-button-radius-border: 24px;
-                    display: grid; 
-                    width: 344px;
-                    height: 50px;
-                    font-size: 16px;
-                    font-weight: 500;
-                    text-align: center;
-                    letter-spacing: 0.5px;
-                    margin: auto;"></lightning-button>
-                </div> -->
-            </template>
-
-        </div>
-    </div>
-</template>
+    function createChatterFeed() {
+      setupLightning(function() {
+        $Lightning.createComponent("c:casePublicCmp", {origin: '1a07afe7fc2c54d466d12569f05fb391'}, "lexcontainer");
+      });
+    }
+  </script>
+</html> 
