@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>
-      Registro de quejas - Coppel
+      Asesoria y Orientacion - Coppel
     </title>
 
     <meta charset="utf-8">
@@ -124,8 +124,9 @@
           callback();
         }
       } else {
+        var url = "https://afore-coppel--evolutivo.sandbox.my.site.com/quejas";
         //var url = "https://qa-coppel.cs220.force.com/quejaspublic";
-		var url = "https://coppelmx--vassdevmx2.sandbox.my.salesforce-sites.com/quejaspublic";
+		//var url = "https://coppelmx--vassdevmx2.sandbox.my.salesforce-sites.com/quejaspublic";
 
         $Lightning.use(
           appName, 
@@ -144,7 +145,7 @@
 
     function createChatterFeed() {
       setupLightning(function() {
-        $Lightning.createComponent("c:casePublicCmp", {origin: '1a07afe7fc2c54d466d12569f05fb391'}, "lexcontainer");
+        $Lightning.createComponent("c:afe_FormularioWebCls", {origin: '1a07afe7fc2c54d466d12569f05fb391'}, "lexcontainer");
       });
     }
   </script>
